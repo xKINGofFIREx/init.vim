@@ -1,7 +1,8 @@
 set nocompatible
 
 call plug#begin('~/AppData/Local/nvim/vimfiles/plugged')
-Plug 'itchyny/lightline.vim'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-easy-align'
@@ -10,6 +11,7 @@ Plug 'sheerun/vim-polyglot'
 Plug 'vim-syntastic/syntastic'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'universal-ctags/ctags'
+Plug 'tomasiser/vim-code-dark'
 call plug#end()
 
 syntax on
@@ -25,10 +27,15 @@ set smarttab
 set encoding=UTF-8
 set wrap
 
-let g:lightline = {
-      \ 'colorscheme': 'wombat',
-      \ }
-
+" Airline
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_detect_modified=1
+let g:airline_theme = 'codedark'
+let g:airline_powerline_fonts = 1
+  
+let g:codedark_modern=1
+let g:codedark_transparent=1
+colorscheme codedark
 
 " Function to trim extra whitespace in whole file
 function! Trim()
@@ -64,6 +71,15 @@ set updatetime=300
 " Always show the signcolumn, otherwise it would shift the text each time
 " diagnostics appear/become resolved
 set signcolumn=yes
+
+" Brackets completion
+inoremap " ""<left>
+inoremap ' ''<left>
+inoremap ( ()<left>
+inoremap [ []<left>
+inoremap { {}<left>
+inoremap {<CR> {<CR>}<ESC>O
+inoremap {;<CR> {<CR>};<ESC>O}
 
 " Use tab for trigger completion with characters ahead and navigate
 " NOTE: There's always complete item selected by default, you may want to enable
