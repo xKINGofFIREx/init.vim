@@ -1,9 +1,8 @@
 set nocompatible
 
 call plug#begin('~/AppData/Local/nvim/vimfiles/plugged')
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'itchyny/lightline.vim'
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'https://github.com/RRethy/nvim-base16'
@@ -11,7 +10,7 @@ Plug 'sheerun/vim-polyglot'
 Plug 'vim-syntastic/syntastic'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'universal-ctags/ctags'
-Plug 'tomasiser/vim-code-dark'
+Plug 'https://github.com/sainnhe/gruvbox-material'
 call plug#end()
 
 syntax on
@@ -27,15 +26,32 @@ set smarttab
 set encoding=UTF-8
 set wrap
 
-" Airline
-let g:airline#extensions#tabline#enabled = 1
-let g:airline_detect_modified=1
-let g:airline_theme = 'codedark'
-let g:airline_powerline_fonts = 1
-  
-let g:codedark_modern=1
-let g:codedark_transparent=1
-colorscheme codedark
+let g:lightline = {
+      \ 'colorscheme': 'gruvbox_material',
+      \ 'active': {
+      \   'left': [ ['mode', 'paste'],
+      \             ['fugitive', 'readonly', 'filename', 'modified'] ],
+      \   'right': [ [ 'lineinfo' ], ['percent'] ]
+      \ },
+      \ 'component': {
+      \   'readonly': '%{&filetype=="help"?"":&readonly?"\ue0a2":""}',
+      \   'modified': '%{&filetype=="help"?"":&modified?"\ue0a0":&modifiable?"":"-"}',
+      \   'fugitive': '%{exists("*fugitive#head")?fugitive#head():""}'
+      \ },
+      \ 'component_visible_condition': {
+      \   'readonly': '(&filetype!="help"&& &readonly)',
+      \   'modified': '(&filetype!="help"&&(&modified||!&modifiable))',
+      \   'fugitive': '(exists("*fugitive#head") && ""!=fugitive#head())'
+      \ },
+	  \ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
+      \ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" }
+      \ }
+
+let g:gruvbox_material_foreground='original'
+let g:gruvbox_material_background='hard'
+let g:gruvbox_material_transparent_background=1
+colorscheme gruvbox-material
+
 
 " Function to trim extra whitespace in whole file
 function! Trim()
@@ -56,6 +72,7 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+highlight SyntasticErrorLine guibg=#2f0000
 
 " May need for Vim (not Neovim) since coc.nvim calculates byte offset by count
 " utf-8 byte sequence
