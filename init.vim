@@ -7,7 +7,6 @@ Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'https://github.com/RRethy/nvim-base16'
 Plug 'sheerun/vim-polyglot'
-Plug 'vim-syntastic/syntastic'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'universal-ctags/ctags'
 Plug 'https://github.com/sainnhe/gruvbox-material'
@@ -59,20 +58,6 @@ function! Trim()
     keeppatterns %s/\s\+$//e
     call winrestview(l:save)
 endfun
-
-" Highlight search results
-set hlsearch
-set incsearch
-
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-highlight SyntasticErrorLine guibg=#2f0000
 
 " May need for Vim (not Neovim) since coc.nvim calculates byte offset by count
 " utf-8 byte sequence
