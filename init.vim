@@ -1,9 +1,9 @@
 set nocompatible
 
 call plug#begin('~/AppData/Local/nvim/vimfiles/plugged')
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'itchyny/lightline.vim'
-Plug 'junegunn/fzf.vim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.5' }
 Plug 'junegunn/vim-easy-align'
 Plug 'https://github.com/RRethy/nvim-base16'
 Plug 'sheerun/vim-polyglot'
