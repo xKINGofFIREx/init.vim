@@ -9,7 +9,8 @@ Plug 'https://github.com/RRethy/nvim-base16'
 Plug 'sheerun/vim-polyglot'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'universal-ctags/ctags'
-Plug 'https://github.com/sainnhe/gruvbox-material'
+Plug 'sainnhe/gruvbox-material'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 call plug#end()
 
 syntax on
@@ -24,6 +25,7 @@ set shiftwidth=4
 set smarttab
 set encoding=UTF-8
 set wrap
+set termguicolors
 
 let g:lightline = {
       \ 'colorscheme': 'gruvbox_material',
@@ -45,12 +47,10 @@ let g:lightline = {
 	  \ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
       \ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" }
       \ }
-
+let g:gruvbox_material_bacground='soft'
 let g:gruvbox_material_foreground='original'
-let g:gruvbox_material_background='hard'
 let g:gruvbox_material_transparent_background=1
 colorscheme gruvbox-material
-
 
 " Function to trim extra whitespace in whole file
 function! Trim()
@@ -104,16 +104,10 @@ inoremap {<CR> {<CR>}<ESC>O
 inoremap {;<CR> {<CR>};<ESC>O
 
 " Find files using Telescope command-line sugar.
-nnoremap <leader>ff <cmd>Telescope find_files<cr>
-nnoremap <leader>fg <cmd>Telescope live_grep<cr>
-nnoremap <leader>fb <cmd>Telescope buffers<cr>
-nnoremap <leader>fh <cmd>Telescope help_tags<cr>
-
-" Using Lua functions
-nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
-nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
-nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
-nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
+nnoremap ;ff <cmd>Telescope find_files<cr>
+nnoremap ;fg <cmd>Telescope live_grep<cr>
+nnoremap ;fb <cmd>Telescope buffers<cr>
+nnoremap ;fh <cmd>Telescope help_tags<cr>
 
 " Use tab for trigger completion with characters ahead and navigate
 " NOTE: There's always complete item selected by default, you may want to enable
