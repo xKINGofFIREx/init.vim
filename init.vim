@@ -11,6 +11,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'universal-ctags/ctags'
 Plug 'sainnhe/gruvbox-material'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'navarasu/onedark.nvim'
 call plug#end()
 
 syntax on
@@ -28,7 +29,7 @@ set wrap
 set termguicolors
 
 let g:lightline = {
-      \ 'colorscheme': 'gruvbox_material',
+      \ 'colorscheme': 'wombat',
       \ 'active': {
       \   'left': [ ['mode', 'paste'],
       \             ['fugitive', 'readonly', 'filename', 'modified'] ],
@@ -47,10 +48,17 @@ let g:lightline = {
 	  \ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
       \ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" }
       \ }
-let g:gruvbox_material_bacground='soft'
-let g:gruvbox_material_foreground='original'
-let g:gruvbox_material_transparent_background=1
-colorscheme gruvbox-material
+let g:onedark_config = {
+			\ 'transparent' : v:true, 
+  \ 'style': 'deep',
+  \ 'toggle_style_key': '<leader>ts',
+  \ 'ending_tildes': v:true,
+  \ 'diagnostics': {
+    \ 'darker': v:false,
+    \ 'background': v:false,
+  \ },
+\ }
+colorscheme onedark
 
 " Function to trim extra whitespace in whole file
 function! Trim()
