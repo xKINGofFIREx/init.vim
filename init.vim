@@ -48,13 +48,15 @@ let g:lightline = {
 	  \ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
       \ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" }
       \ }
+
+
 let g:onedark_config = {
-			\ 'transparent' : v:true, 
+    		\ 'transparent' : v:true, 
   \ 'style': 'deep',
   \ 'toggle_style_key': '<leader>ts',
   \ 'ending_tildes': v:true,
   \ 'diagnostics': {
-    \ 'darker': v:false,
+    \ 'darker': v:true,
     \ 'background': v:false,
   \ },
 \ }
@@ -262,3 +264,5 @@ nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
 nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
+
+lua require('treesitter')
