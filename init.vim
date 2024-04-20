@@ -5,13 +5,9 @@ Plug 'itchyny/lightline.vim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.5' }
 Plug 'junegunn/vim-easy-align'
-Plug 'https://github.com/RRethy/nvim-base16'
-Plug 'sheerun/vim-polyglot'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'universal-ctags/ctags'
-Plug 'sainnhe/gruvbox-material'
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'navarasu/onedark.nvim'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 call plug#end()
 
 syntax on
@@ -51,21 +47,25 @@ let g:lightline = {
 
 
 let g:onedark_config = {
-    		\ 'transparent' : v:true, 
+    		\ 'transparent' : v:true,
   \ 'style': 'deep',
   \ 'toggle_style_key': '<leader>ts',
   \ 'ending_tildes': v:true,
   \ 'diagnostics': {
-    \ 'darker': v:true,
+    \ 'darker': v:false,
     \ 'background': v:false,
   \ },
+  \ 'highlights': {
+  \		'function' : {'fg': '#ff8800'},
+\	},
 \ }
-colorscheme onedark
+	colorscheme onedark
+
 
 " Function to trim extra whitespace in whole file
 function! Trim()
     let l:save = winsaveview()
-    keeppatterns %s/\s\+$//e
+    keeppatterns %s/\s\+$\n//e
     call winrestview(l:save)
 endfun
 
@@ -117,7 +117,11 @@ inoremap {;<CR> {<CR>};<ESC>O
 nnoremap ;ff <cmd>Telescope find_files<cr>
 nnoremap ;fg <cmd>Telescope live_grep<cr>
 nnoremap ;fb <cmd>Telescope buffers<cr>
-nnoremap ;fh <cmd>Telescope help_tags<cr>
+nnoremap ;fh <cmd>Telescope help_tags<craugroup vimrc
+  " Automatically delete trailing DOS-returns and whitespace on file open and
+  " write.
+  autocmd BufRead,BufWritePre,FileWritePre * silent! %s/[\r \t]\+$//
+augroup END>
 
 " Use tab for trigger completion with characters ahead and navigate
 " NOTE: There's always complete item selected by default, you may want to enable
@@ -265,4 +269,4 @@ nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 
-lua require('treesitter')
+
