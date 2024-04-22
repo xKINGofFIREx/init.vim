@@ -3,11 +3,11 @@ set nocompatible
 call plug#begin('~/AppData/Local/nvim/vimfiles/plugged')
 Plug 'itchyny/lightline.vim'
 Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.5' }
+Plug 'nvim-telescope/telescope.nvim', { 'rev': '0.1.x' }
 Plug 'junegunn/vim-easy-align'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'navarasu/onedark.nvim'
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
 call plug#end()
 
 syntax on
@@ -46,21 +46,20 @@ let g:lightline = {
       \ }
 
 
-let g:onedark_config = {
-    		\ 'transparent' : v:true,
-  \ 'style': 'deep',
-  \ 'toggle_style_key': '<leader>ts',
-  \ 'ending_tildes': v:true,
-  \ 'diagnostics': {
-    \ 'darker': v:false,
-    \ 'background': v:false,
-  \ },
-  \ 'highlights': {
-  \		'function' : {'fg': '#ff8800'},
-\	},
-\ }
-	colorscheme onedark
+""""let g:onedark_config = {
+""""    		\ 'transparent' : v:true,
+""""  \ 'style': 'deep',
+""""  \ 'toggle_style_key': '<leader>ts',
+""""  \ 'ending_tildes': v:true,
+""""  \ 'diagnostics': {
+""""    \ 'darker': v:false,
+""""    \ 'background': v:false,
+""""  \ },
+""""\ }
+""""colorscheme onedark
 
+
+colorscheme catppuccin-mocha " catppuccin-latte, catppuccin-frappe, catppuccin-macchiato, catppuccin-mocha
 
 " Function to trim extra whitespace in whole file
 function! Trim()
@@ -105,13 +104,13 @@ au BufEnter,BufNew *.c nnoremap <silent> ;xp :leftabove split %<.h<CR>
 au BufEnter,BufNew *.h nnoremap <silent> ;xp :rightbelow split %<.c<CR>
 
 " Brackets completion
-inoremap " ""<left>
-inoremap ' ''<left>
-inoremap ( ()<left>
-inoremap [ []<left>
-inoremap { {}<left>
-inoremap {<CR> {<CR>}<ESC>O
-inoremap {;<CR> {<CR>};<ESC>O
+""inoremap " ""<left>
+""inoremap ' ''<left>
+""inoremap ( ()<left>
+""inoremap [ []<left>
+""inoremap { {}<left>
+""inoremap {<CR> {<CR>}<ESC>O
+""inoremap {;<CR> {<CR>};<ESC>O
 
 " Find files using Telescope command-line sugar.
 nnoremap ;ff <cmd>Telescope find_files<cr>
